@@ -2,3 +2,7 @@ export { default as FormInput } from './FormInput.jsx';
 export { default as SubmitBtn } from './SubmitBtn.jsx';
 export { default as Header } from './Header.jsx';
 export { default as Navbar } from './Navbar.jsx';
+export { default as Hero } from './Hero.jsx';
+export { default as ErrorElement } from './ErrorElement.jsx';
+export { default as FeaturedProducts } from './FeaturedProducts.jsx';
+export { default as SectionTitle } from './SectionTitle.jsx';

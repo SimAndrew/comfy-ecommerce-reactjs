@@ -14,13 +14,23 @@ import {
 	Checkout,
 } from './pages/index.js';
 
+import { ErrorElement } from './components/index.js';
+import { loader as landingLoader } from './pages/Landing.jsx';
+
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <HomeLayout />,
 		errorElement: <Error />,
+
+		hydrateFallbackElement: <div className="loading" />,
 		children: [
-			{ index: true, element: <Landing /> },
+			{
+				index: true,
+				element: <Landing />,
+				errorElement: <ErrorElement />,
+				loader: landingLoader,
+			},
 			{ path: 'products', element: <Products /> },
 			{ path: 'products/:id', element: <SingleProduct /> },
 			{ path: 'cart', element: <Cart /> },
