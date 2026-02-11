@@ -1,6 +1,8 @@
 import { Form, useLoaderData, Link } from 'react-router';
 import FormInput from './FormInput';
 import FormSelect from './FormSelect';
+import FormRange from './FormRange.jsx';
+import FormCheckbox from './FormCheckbox.jsx';
 
 const Filters = () => {
 	const { meta } = useLoaderData();
@@ -13,28 +15,26 @@ const Filters = () => {
 				name="search"
 				size="input-sm"
 			/>
-
 			<FormSelect
 				label="select category"
 				name="category"
 				list={meta.categories}
 				size="select-sm"
 			/>
-
 			<FormSelect
 				label="select company"
 				name="company"
 				list={meta.companies}
 				size="select-sm"
 			/>
-
 			<FormSelect
 				label="sort by"
 				name="order"
 				list={['a-z', 'z-a', 'high', 'low']}
 				size="select-sm"
 			/>
-
+			<FormRange label="select price" name="price" size="range-sm" />
+			<FormCheckbox label="free shipping" name="shipping" size="checkbox-sm" />
 			<button type="submit" className="btn btn-primary btn-sm">
 				search
 			</button>
