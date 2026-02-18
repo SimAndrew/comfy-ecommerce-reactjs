@@ -6,6 +6,8 @@ import {
 	customFetch,
 	generateAmountOptions,
 } from '../utils/index.jsx';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../features/cart/cartSlice.js';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const loader = async ({ params }) => {
@@ -23,6 +25,23 @@ const SingleProduct = () => {
 
 	const handleAmount = (e) => {
 		setAmount(parseInt(e.target.value));
+	};
+
+	const cartProduct = {
+		cartID: product.id + productColor,
+		productID: product.id,
+		image,
+		title,
+		price,
+		amount,
+		productColor,
+		company,
+	};
+
+	const dispatch = useDispatch();
+
+	const addToCart = () => {
+		dispatch(addItem({ product: cartProduct }));
 	};
 
 	return (
@@ -90,10 +109,7 @@ const SingleProduct = () => {
 					</div>
 
 					<div className="mt-10 ">
-						<button
-							className="btn btn-secondary btn-md"
-							onClick={() => console.log('add to bag')}
-						>
+						<button className="btn btn-secondary btn-md" onClick={addToCart}>
 							Add to bag
 						</button>
 					</div>
