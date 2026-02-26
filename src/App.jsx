@@ -18,6 +18,7 @@ import { ErrorElement } from './components/index.js';
 import { loader as landingLoader } from './pages/Landing.jsx';
 import { loader as singleProductLoader } from './pages/SingleProduct.jsx';
 import { loader as productsLoader } from './pages/Products.jsx';
+import { action as registerAction } from './pages/Register.jsx';
 
 const router = createBrowserRouter([
 	{
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
 		path: '/register',
 		element: <Register />,
 		errorElement: <Error />,
+		action: registerAction,
 	},
 ]);
 
