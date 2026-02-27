@@ -1,5 +1,33 @@
-import { Form, Link } from 'react-router';
-import { FormInput, SubmitBtn } from '../components/index.js';
+import { Form, Link, redirect, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { FormInput, SubmitBtn } from '../components';
+import { loginUser } from '../features/user/userSlice.js';
+import { customFetch } from '../utils';
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const action =
+	(store) =>
+	async ({ request }) => {
+		const formData = await request.formData();
+		const data = Object.fromEntries(formData);
+
+		try {
+			const response = await customFetch.post('/auth/local', data);
+
+			store.dispatch(loginUser(response.data));
+			toast.success('logged in successfully');
+			return redirect('/');
+		} catch (error) {
+			console.log(error);
+			const errorMessage =
+				error?.response?.data?.error?.message ||
+				'please double check your credentials';
+
+			toast.error(errorMessage);
+			return null;
+		}
+	};
 
 const Login = () => {
 	return (
