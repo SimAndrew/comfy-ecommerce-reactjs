@@ -19,7 +19,9 @@ import { loader as landingLoader } from './pages/Landing.jsx';
 import { loader as singleProductLoader } from './pages/SingleProduct.jsx';
 import { loader as productsLoader } from './pages/Products.jsx';
 import { action as registerAction } from './pages/Register.jsx';
-import { action as loginAction } from './pages/Login';
+import { action as loginAction } from './pages/Login.jsx';
+import { loader as checkoutLoader } from './pages/Checkout.jsx';
+import { action as checkoutAction } from './components/CheckoutForm.jsx';
 
 import { store } from './store.js';
 
@@ -51,7 +53,12 @@ const router = createBrowserRouter([
 			},
 			{ path: 'cart', element: <Cart /> },
 			{ path: 'about', element: <About /> },
-			{ path: 'checkout', element: <Checkout /> },
+			{
+				path: 'checkout',
+				element: <Checkout />,
+				loader: checkoutLoader(store),
+				action: checkoutAction(store),
+			},
 			{ path: 'orders', element: <Orders /> },
 		],
 	},
