@@ -28,7 +28,6 @@ import { loader as ordersLoader } from './pages/Orders.jsx';
 import { store } from './store.js';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -97,7 +96,6 @@ const App = () => {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<RouterProvider router={router} />;
-			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);
 };
